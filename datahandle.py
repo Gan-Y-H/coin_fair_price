@@ -1,4 +1,4 @@
-from CoinMarketCapTest import data
+from CMCAPI_talk import data
 print("-------------------data received-------------------\n")
 
 price_dict = {}
@@ -7,42 +7,40 @@ daily_volume_dict = {}
 nvt_dict = {}
 total_supply_dict = {}
 
-def crypto_coin(pos):
-    price = pos['quote']['USD']['price']
-    price_dict[pos['name']] = price
-    mkt_cap = pos['quote']['USD']['market_cap']
-    mkt_cap_dict[pos['name']] = mkt_cap
-    daily_volume = pos['quote']['USD']['volume_24h']
-    daily_volume_dict[pos['name']] = daily_volume
-    total_supply = pos['total_supply']
-    total_supply_dict[pos['name']] = total_supply
+def crypto_coin(name:str):
+    coin_dict = next((d for d in data['data'] if d['name'] == name), None)
+    price = coin_dict['quote']['USD']['price']
+    price_dict[name] = price
+    mkt_cap = coin_dict['quote']['USD']['market_cap']
+    mkt_cap_dict[name] = mkt_cap
+    daily_volume = coin_dict['quote']['USD']['volume_24h']
+    daily_volume_dict[name] = daily_volume
+    total_supply = coin_dict['total_supply']
+    total_supply_dict[name] = total_supply
     nvt = mkt_cap/daily_volume
-    nvt_dict[pos['name']] = nvt
-    # print("\n-------------------" + pos['name'] + "-------------------\n")
+    nvt_dict[name] = nvt
+    # print("\n-------------------" + name + "-------------------\n")
     # print('price: ' + str(price))
     # print("Market cap: " + str(mkt_cap))
     # print("Daily vol: " + str(daily_volume))
     # print("NVT: " + str(nvt))
     # print("total_supply: " + str(total_supply))
 
+# print the name of top 10 crypto coins in the list (coin positions are changing)
+# for i in range(10):
+#     print(data["data"][i]['name'])
 
-#BTC quote
-#print(data["data"][0])
-crypto_coin(data['data'][0])
+#BTC quote (name: Bitcoin)
+crypto_coin("Bitcoin")
 
-#ETH
-#print(data["data"][1])
-crypto_coin(data['data'][1])
+#ETH (name: Ethereum)
+crypto_coin("Ethereum")
 
-#Solana
-#print(data["data"][5])
-crypto_coin(data['data'][5])
+#Solana (name: Solana)
+crypto_coin("Solana")
 
-#Cardano
-#print(data["data"][7])
-crypto_coin(data['data'][7])
+#Cardano (name: Cardano)
+crypto_coin("Cardano")
 
-#Avalanche
-#print(data["data"][9])
-crypto_coin(data['data'][9])
-
+#Avalanche (name: Avalanche)
+crypto_coin("Avalanche")
