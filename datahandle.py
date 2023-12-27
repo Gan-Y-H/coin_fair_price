@@ -1,4 +1,5 @@
-from CMCAPI_talk import data
+from CMCAPI_talk import latest_data
+from CMCAPI_talk import hist_data
 print("-------------------data received-------------------\n")
 
 price_dict = {}
@@ -8,7 +9,7 @@ nvt_dict = {}
 total_supply_dict = {}
 
 def crypto_coin(name:str):
-    coin_dict = next((d for d in data['data'] if d['name'] == name), None)
+    coin_dict = next((d for d in latest_data['data'] if d['name'] == name), None)
     price = coin_dict['quote']['USD']['price']
     price_dict[name] = price
     mkt_cap = coin_dict['quote']['USD']['market_cap']
@@ -28,7 +29,7 @@ def crypto_coin(name:str):
 
 # print the name of top 10 crypto coins in the list (coin positions are changing)
 # for i in range(10):
-#     print(data["data"][i]['name'])
+#     print(latest_data["data"][i]['name'])
 
 #BTC quote (name: Bitcoin)
 crypto_coin("Bitcoin")
