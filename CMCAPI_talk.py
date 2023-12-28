@@ -7,7 +7,7 @@ from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
 
 # latest listing data
-url_latest_listing = 'https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+url_latest_listing = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
 parameters = {
   'start':'1',
   'limit':'5000',
@@ -34,12 +34,12 @@ sol_url = 'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&sym
 hist_url_list.append(sol_url)
 
 #ADA (cardano)
-ada_url = 'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=ADA&market=USD&apikey=8YHJEZ783X86EHRR'
-hist_url_list.append(ada_url)
+# ada_url = 'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=ADA&market=USD&apikey=8YHJEZ783X86EHRR'
+# hist_url_list.append(ada_url)
 
 #AVAX
-avax_url = 'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=AVAX&market=USD&apikey=8YHJEZ783X86EHRR'
-hist_url_list.append(avax_url)
+# avax_url = 'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=AVAX&market=USD&apikey=8YHJEZ783X86EHRR'
+# hist_url_list.append(avax_url)
 
 session = Session()
 session.headers.update(headers)
